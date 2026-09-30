@@ -60,3 +60,30 @@
     });
   });
 })();
+
+/* Testimonios: filter chips, "show all", and a simple full-size viewer. */
+(function(){
+  var sec = document.getElementById('testimonios'); if (!sec) return;
+  var grid = sec.querySelector('.tst-g'), cards = [].slice.call(grid.querySelectorAll('.tc')), more = sec.querySelector('.tst-more'), FIRST = 12;
+  cards.forEach(function(c, i){ if (i >= FIRST) c.classList.add('more'); });
+  more.querySelector('button').addEventListener('click', function(){ grid.setAttribute('data-open', '1'); more.hidden = true; });
+  sec.querySelectorAll('.tst-f button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.getAttribute('data-f');
+      sec.querySelectorAll('.tst-f button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      cards.forEach(function(c){ c.hidden = !(f === 'all' || c.getAttribute('data-cat') === f); });
+      if (f !== 'all'){ grid.setAttribute('data-open', '1'); more.hidden = true; }
+    });
+  });
+  var lb = sec.querySelector('.tst-lb'); if (!lb || !lb.showModal) return;
+  var img = lb.querySelector('img'), cap = lb.querySelector('p'), idx = 0;
+  var visible = function(){ return cards.filter(function(c){ return !c.hidden && getComputedStyle(c).display !== 'none'; }); };
+  var show = function(c){ var b = c.querySelector('.tc-b'); img.src = b.getAttribute('data-full'); img.alt = c.querySelector('img').alt; cap.textContent = c.querySelector('figcaption').textContent.replace(/^(WhatsApp|Puntaje|Disputa)/, '$1 · '); };
+  cards.forEach(function(c){ c.querySelector('.tc-b').addEventListener('click', function(){ var v = visible(); idx = v.indexOf(c); show(c); lb.showModal(); }); });
+  var step = function(d){ var v = visible(); idx = (idx + d + v.length) % v.length; show(v[idx]); };
+  lb.querySelector('.x').addEventListener('click', function(){ lb.close(); });
+  lb.querySelector('.p').addEventListener('click', function(){ step(-1); });
+  lb.querySelector('.n').addEventListener('click', function(){ step(1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) lb.close(); });
+  lb.addEventListener('keydown', function(e){ if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1); });
+})();

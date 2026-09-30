@@ -2,20 +2,37 @@
 (function(){
   var root = document.documentElement;
   /* WhatsApp line: main business number from the current live site (to confirm with the client) */
-  var PHONE = '17868199447';
+  var PHONE = '17867361427';
   /* When the real booking system exists, put its link here and "Reservar consulta" goes straight to it. */
   var BOOKING_URL = '';
   var MSG = {
-    general:'Hola, quiero agendar mi consulta gratis con Credit Express',
-    specialist:'Hola, quiero hablar con un especialista de Credit Express',
-    decode:'Hola, quiero que me ayuden a entender mi reporte de crédito',
-    repair:'Hola, me interesa la reparación de crédito',
-    rebuild:'Hola, me interesa la reconstrucción y el monitoreo de mi crédito',
-    debt:'Hola, necesito ayuda con deudas, cobradores o bancarrota',
-    loans:'Hola, quiero prepararme para un préstamo o financiamiento',
-    vehicle:'Hola, quiero prepararme para financiar un auto, moto, jet ski o casa',
-    referral:'Hola, quiero información del programa de referidos',
-    team:'Hola, quiero hablar con el equipo de Credit Express'
+    general:'Hola Erick, quiero agendar mi consulta gratis con Credit Express.',
+    specialist:'Hola Erick, quiero hablar con un especialista de Credit Express.',
+    decode:'Hola Erick, me interesa su ayuda. Quiero entender mi reporte de crédito.',
+    repair:'Hola Erick, me interesa su ayuda. Quiero reparar mi crédito.',
+    rebuild:'Hola Erick, me interesa su ayuda. Quiero reconstruir mi crédito y darle seguimiento.',
+    debt:'Hola Erick, me interesa su ayuda. Necesito ayuda con deudas o cobradores.',
+    loans:'Hola Erick, me interesa su ayuda. Quiero prepararme para un préstamo o financiamiento.',
+    vehicle:'Hola Erick, me interesa su ayuda. Quiero prepararme para financiar lo que quiero comprar.',
+    referral:'Hola Erick, me interesa su ayuda. Quiero información del programa de referidos.',
+    team:'Hola Erick, quiero hablar con el equipo de Credit Express.',
+    s_repair:'Hola Erick, me interesa su ayuda. Quiero reparar mi crédito.',
+    s_rebuild:'Hola Erick, me interesa su ayuda. Quiero reconstruir mi crédito con un plan, paso a paso.',
+    s_monitor:'Hola Erick, me interesa su ayuda. Me interesa el monitoreo de mi crédito.',
+    s_bureaus:'Hola Erick, me interesa su ayuda. Quiero que revisen mis reportes de los 3 bureaus.',
+    s_cards:'Hola Erick, me interesa su ayuda. Quiero prepararme para sacar una tarjeta de crédito.',
+    s_edu:'Hola Erick, me interesa su ayuda. Quiero aprender cómo funciona el crédito.',
+    s_consol:'Hola Erick, me interesa su ayuda. Tengo varias deudas y quiero saber sobre consolidación.',
+    s_bk:'Hola Erick, me interesa su ayuda. Estoy pensando en la bancarrota y quiero entender mis opciones.',
+    s_collect:'Hola Erick, me interesa su ayuda. Tengo acreedores o cobradores y necesito ayuda.',
+    s_personal:'Hola Erick, me interesa su ayuda. Estoy buscando un préstamo personal y quiero preparar mi crédito.',
+    s_business:'Hola Erick, me interesa su ayuda. Estoy buscando un préstamo para mi negocio.',
+    s_sba:'Hola Erick, me interesa su ayuda. Me interesa un SBA loan para mi negocio.',
+    s_funding:'Hola Erick, me interesa su ayuda. Estoy buscando capital (business funding) para mi negocio.',
+    s_auto:'Hola Erick, me interesa su ayuda. Estoy buscando comprar un auto y quiero preparar mi crédito para financiarlo.',
+    s_home:'Hola Erick, me interesa su ayuda. Estoy buscando comprar una casa y quiero preparar mi crédito.',
+    s_moto:'Hola Erick, me interesa su ayuda. Estoy buscando comprar una motocicleta y quiero preparar mi crédito para financiarla.',
+    s_jetski:'Hola Erick, me interesa su ayuda. Estoy buscando comprar un jet ski y quiero preparar mi crédito para financiarlo.'
   };
   function wa(text){ return 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text); }
   document.querySelectorAll('[data-wa]').forEach(function(a){ a.href = wa(MSG[a.dataset.wa] || MSG.general); a.target = '_blank'; a.rel = 'noopener'; });
