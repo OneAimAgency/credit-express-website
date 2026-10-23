@@ -158,3 +158,15 @@
     sync();
   });
 })();
+
+/* GoHighLevel chat widget: on phones, lift its bubble above the bottom action bar (Agendar / WhatsApp) so it never covers those buttons. */
+(function(){
+  var CSS = '@media (max-width:980px){ .lc_text-widget, .lc_text-widget--bubble{ bottom:92px !important } }';
+  var tries = 0;
+  var t = setInterval(function(){
+    var w = document.querySelector('chat-widget');
+    if (w && w.shadowRoot && w.shadowRoot.querySelector('.lc_text-widget')){
+      var s = document.createElement('style'); s.textContent = CSS; w.shadowRoot.appendChild(s); clearInterval(t);
+    } else if (++tries > 60) clearInterval(t);
+  }, 500);
+})();
